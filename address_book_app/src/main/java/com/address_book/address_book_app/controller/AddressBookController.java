@@ -2,6 +2,8 @@ package com.address_book.address_book_app.controller;
 
 import com.address_book.address_book_app.dto.AddressBookDTO;
 import com.address_book.address_book_app.service.AddressBookService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -13,6 +15,7 @@ public class AddressBookController {
 
     private final AddressBookService service;
 
+    @Autowired 
     public AddressBookController(AddressBookService service) {
         this.service = service;
     }

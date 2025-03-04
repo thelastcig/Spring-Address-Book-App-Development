@@ -8,15 +8,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import com.address_book.address_book_app.dto.AddressBookDTO;
 import com.address_book.address_book_app.repository.AddressBookRepository;
-
-
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class AddressBookService {
 
     private final AddressBookRepository repository;
 
+    @Autowired 
     public AddressBookService(AddressBookRepository repository) {
         this.repository = repository;
     }
