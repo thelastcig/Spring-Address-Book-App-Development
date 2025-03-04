@@ -1,14 +1,11 @@
 package com.address_book.address_book_app.controller;
 
-
-
-import com.address_book.address_book_app.model.AddressBookEntry;
+import com.address_book.address_book_app.dto.AddressBookDTO;
 import com.address_book.address_book_app.service.AddressBookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/addressbook")
@@ -21,25 +18,25 @@ public class AddressBookController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AddressBookEntry>> getAllContacts() {
+    public ResponseEntity<List<AddressBookDTO>> getAllContacts() {
         return ResponseEntity.ok(service.getAllContacts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AddressBookEntry> getContactById(@PathVariable Long id) {
+    public ResponseEntity<AddressBookDTO> getContactById(@PathVariable Long id) {
         return service.getContactById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<AddressBookEntry> addContact(@RequestBody AddressBookEntry contact) {
-        return ResponseEntity.ok(service.addContact(contact));
+    public ResponseEntity<AddressBookDTO> addContact(@RequestBody AddressBookDTO contactDTO) {
+        return ResponseEntity.ok(service.addContact(contactDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AddressBookEntry> updateContact(@PathVariable Long id, @RequestBody AddressBookEntry contact) {
-        return service.updateContact(id, contact)
+    public ResponseEntity<AddressBookDTO> updateContact(@PathVariable Long id, @RequestBody AddressBookDTO contactDTO) {
+        return service.updateContact(id, contactDTO)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
